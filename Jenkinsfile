@@ -13,6 +13,7 @@ pipeline {
         			remote.allowAnyHosts = true
 				sshCommand remote: remote, command: "ls"
 			}
+			}
 		}
 			
 			
