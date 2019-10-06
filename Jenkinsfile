@@ -11,7 +11,10 @@ pipeline {
         			remote.password = 'iac'
         			remote.allowAnyHosts = true
 			     }
-			sh 'pwd'
+			steps {
+				sh 'pwd'
+			}
+			
 			}
 	}
 	
