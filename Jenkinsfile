@@ -11,7 +11,7 @@ pipeline {
         			remote.user = 'iac'
         			remote.password = 'iac'
         			remote.allowAnyHosts = true
-				sshCommand remote: remote, command: "ls"
+				sh 'ls'
 			}
 			}
 		}
