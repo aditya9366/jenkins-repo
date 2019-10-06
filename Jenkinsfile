@@ -6,7 +6,8 @@ node {
             		remote.password = 'iac'
 			remote.allowAnyHosts = true
 			stage('terraform-plan') {
-				sshCommand remote: remote, command: "cd /home/terraform/aws" 
+				sshCommand remote: remote, command: "cd /home/iac/aws"
+				sshCommand remote: remote, command: "terraform plan"
 				}
 }
 			
