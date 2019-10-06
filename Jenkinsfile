@@ -9,7 +9,7 @@ node {
 				sshCommand remote: remote, command: "cd /home/iac/aws && terraform plan"
 				}
 			stage('terraform apply') {
-				sshCommand remote: remote, command: "cd /home/iac/aws && terraform apply"
+				sshCommand remote: remote, command: "cd /home/iac/aws && terraform apply -auto-approve"
 			}
 }
 			
