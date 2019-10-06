@@ -4,7 +4,7 @@ pipeline {
 	agent any 
 	
 	stages {            
-		node {
+		
 			def remote = [:]
             		remote.name = 'testPlugin'
             		remote.host = '192.168.0.10'
@@ -14,7 +14,7 @@ pipeline {
 			stage('terraform-plan') {
 				sshCommand remote: remote, command: "cd /home/terraform/aws" 
 				}
-			}
+			
 		
 		stage('terraform-apply') {
 			steps {
