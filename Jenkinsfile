@@ -10,12 +10,18 @@ node {
 				}
         stage('terraform apply') {
 				sshCommand remote: remote, command: "cd /home/iac/aws && terraform apply -auto-approve"
-			        }
+				}
 }
+
+node {
+	stage ('test') {
+		sh 'ls'
+	}
+}
+
+
+
 			
 		
-stage('display') {
-		sh 'cd'
-		sh 'ls'
-}
+
 	
