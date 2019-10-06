@@ -6,7 +6,7 @@ pipeline {
 			steps {
 				script 
 				  {
-    					sh """ssh iac@192.168.0.10 << EOF 
+    					sh """ssh iac@192.168.0.10 <<-EOF 
     					cd /home/terraform/aws
 					terraform plan
     					exit
