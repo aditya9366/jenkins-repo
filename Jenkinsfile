@@ -5,13 +5,14 @@ pipeline {
 	
 	stages {            
 		
-			def remote = [:]
-            		remote.name = 'testPlugin'
-            		remote.host = '192.168.0.10'
-            		remote.user = 'iac'
-            		remote.password = 'iac'
-			remote.allowAnyHosts = true
+
 			stage('terraform-plan') {
+				def remote = [:]
+            			remote.name = 'testPlugin'
+            			remote.host = '192.168.0.10'
+            			remote.user = 'iac'
+            			remote.password = 'iac'
+				remote.allowAnyHosts = true
 				sshCommand remote: remote, command: "cd /home/terraform/aws" 
 				}
 			
