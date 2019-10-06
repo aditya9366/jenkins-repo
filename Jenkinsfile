@@ -12,9 +12,9 @@ pipeline {
             		remote.password = 'iac'
 			remote.allowAnyHosts = true
 			stage('terraform-plan') {
-			
 				sshCommand remote: remote, command: "cd /home/terraform/aws" 
-		}
+				}
+			}
 		
 		stage('terraform-apply') {
 			steps {
