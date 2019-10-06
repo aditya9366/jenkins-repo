@@ -4,14 +4,7 @@ pipeline {
 	stages {
 		stage('terraform-plan') {
 			steps {
-				script 
-				  {
-    					sh """ssh iac@192.168.0.10 <<-EOF 
-    					cd /home/terraform/aws
-					terraform plan
-    					exit
-    					EOF"""
-				  }
+				sh 'ls'
 			}
 		
 		}
