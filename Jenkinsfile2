@@ -3,9 +3,7 @@ pipeline {
     stages { 
       stage('terraform cloud test'){
         steps {
-                sh 'TOKEN=T3a8qwA14Q2dRw.atlasv1.5J6dmZSazR3RTSUl0geoBPKB2wzeX4e1U7Kig0VHnse2ytb4DNM22DNyCFUScyFVzHw'
-                sh 'echo $TOKEN'
-                sh 'curl --header "Authorization: Bearer $TOKEN" --header "Content-Type: application/vnd.api+json" https://app.terraform.io/api/v2/workspaces/ws-yF7z4gyEQRhaCNG9/runs'
+                sh 'TOKEN=T3a8qwA14Q2dRw.atlasv1.5J6dmZSazR3RTSUl0geoBPKB2wzeX4e1U7Kig0VHnse2ytb4DNM22DNyCFUScyFVzHw && curl --header "Authorization: Bearer $TOKEN" --header "Content-Type: application/vnd.api+json" https://app.terraform.io/api/v2/workspaces/ws-yF7z4gyEQRhaCNG9/runs'
               }
            }
         
