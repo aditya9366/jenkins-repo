@@ -8,14 +8,16 @@ node {
 			stage('terraform-plan') {
 				sshCommand remote: remote, command: "cd /home/iac/aws && terraform plan"
 				}
+			stage('terraform apply') {
+				sshCommand remote: remote, command: "cd /home/iac/aws && terraform apply"
+			}
 }
 			
 		
-stage('terraform-apply') {
+stage('test') {
 	steps {
-		sh 'ssh iac@192.168.0.10'
-		sh 'cd /home/terraform/aws'
-		sh 'terraform apply -auto-approve'
+		sh 'cd'
+		sh 'ls'
 		}
 }
 	
