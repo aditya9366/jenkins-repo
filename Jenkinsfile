@@ -11,9 +11,9 @@ pipeline {
         			remote.user = 'iac'
         			remote.password = 'iac'
         			remote.allowAnyHosts = true
-				sh 'ls'
-			}
-			}
+				sshCommand remote: remote, command: "cd /home/iac/aws && terraform plan"
+				}
+			  }
 		}
 			
 			
