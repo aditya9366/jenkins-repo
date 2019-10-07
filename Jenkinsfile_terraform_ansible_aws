@@ -10,7 +10,7 @@ pipeline {
         			remote.user = 'iac'
         			remote.password = 'iac'
         			remote.allowAnyHosts = true
-				      sshCommand remote: remote, command: "cd /root/ansible && ansible-playbook testweb.yml -vv"
+				      sshCommand remote: remote, command: "cd aws && terraform plan && terraform apply -auto-approve"
 				}
 			  }
 		}
