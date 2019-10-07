@@ -24,7 +24,7 @@ pipeline {
         			remote.user = 'root'
         			remote.password = 'root'
         			remote.allowAnyHosts = true
-				      sshCommand remote: remote, command: "cd /root/ansible && ./ec2.py --list && ansible -m ping all"
+				      sshCommand remote: remote, command: "cd /root/ansible && ansible -i ec2.py -m ping && ansible -m ping all"
 				}
 			  }
 		}
