@@ -1,0 +1,36 @@
+pipeline {
+	agent any
+	stages {
+  		stage('Infra provisioning - terraform') {
+			steps {
+			  script {
+				def remote = [:]
+        			remote.name = 'Terraform-Server'
+        			remote.host = '192.168.0.10'
+        			remote.user = 'iac'
+        			remote.password = 'iac'
+        			remote.allowAnyHosts = true
+				      sshCommand remote: remote, command: "cd /root/ansible && ansible-playbook testweb.yml -vv"
+				}
+			  }
+		}
+			
+		stage('Configuration management - ansible') {
+			steps {
+			  script {
+				def remote = [:]
+        			remote.name = 'Ansible-Server'
+        			remote.host = '192.168.0.20'
+        			remote.user = 'root'
+        			remote.password = 'root'
+        			remote.allowAnyHosts = true
+				      sshCommand remote: remote, command: "cd /root/ansible && ./ec2.py --list && ansible -m ping all"
+				}
+			  }
+		}
+			
+			
+			
+	}
+	
+}
