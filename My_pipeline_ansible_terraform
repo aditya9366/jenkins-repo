@@ -1,0 +1,52 @@
+node ('master')
+{
+    def secrets = [
+            [path: 'mysecret/Jenkins_phase1', engineVersion: 1, secretValues: [
+            [envVar: 'terra_user', vaultKey: 'terraform_user'],
+            [envVar: 'terra_password', vaultKey: 'terraform_password']]]
+            ]
+
+    def config = [engineVersion: 1, skipSslVerification: true, timeout: 60, vaul                                                                                                             tCredentialId: 'token', vaultUrl: 'http://10.1.80.27:8800']
+        def terra_password
+        def terra_user
+
+        withVault([configuration: config, vaultSecrets: secrets]){
+                terra_user_local = "${terra_user}"
+                terra_password_local = "${terra_password}"
+                echo "-----Valut_Env---------->${terra_user_local}"
+        echo "-----Vault_Env---------->${terra_password_local}"
+        }
+
+    //withVault([configuration: config, vaultSecrets: secrets])
+    //{
+        boolean testPassed = true
+
+        stage('jenkins-server'){
+            echo "${terra_user_local}"
+            echo "${terra_password_local}"
+            sh 'ls && hostnamectl && echo ${ansible_user} | base64 && echo ${ans                                                                                                             ible_pass} | base64'
+        }
+
+        stage('IAAC') {
+        def remote = [:]
+        remote.name = 'Terraform'
+        remote.host = '10.1.80.27'
+        remote.user = "${terra_user_local}"
+        remote.password = "${terra_password_local}"
+        remote.allowAnyHosts = true
+
+        stage('planning') {
+        sshCommand remote: remote, command: 'terraform version && cd case1 && te                                                                                                             rraform plan'
+        }
+
+        stage('Sanity check') {
+        input "Does the staging environment look ok?"
+        }
+
+        stage('post-stage') {
+        sshCommand remote: remote, command: 'terraform version'
+        }
+        }
+
+   //}
+}
